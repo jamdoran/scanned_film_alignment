@@ -468,7 +468,7 @@ def main():
     # Create the folders to hold the raw and adjusted jpeg files for later processing
     for rawFile in disk.rawFilmScans:
         print ()
-        print (f'Debug: Creating Folders for {rawFile}')
+        # print (f'Debug: Creating Folders for {rawFile}')
         rawJpegFolder       = rawFile.split('.')[0] + '_raw'
         adjustedJpegFolder  = rawFile.split('.')[0] + '_adjusted'
 
