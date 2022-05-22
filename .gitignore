@@ -6,6 +6,8 @@
 test_files/
 test_files_copy/
 test_files_small/
+test*/
+*.jpg
 
 
 # Byte-compiled / optimized / DLL files

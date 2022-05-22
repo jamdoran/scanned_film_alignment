@@ -382,7 +382,7 @@ def main():
 
     print(f'MacOS {platform.mac_ver()[0]}\n{cpu_count()} CPU Cores\nUsing {max_allowed_core_count()} CPU Cores \nffmpeg location ({check_ffmpeg_installed()})\n\n')
     
-
+    # Get the Root Folder via Dialog Box
     disk.rootFolder = popDialog_folder()
 
     # Start the timer once the root folder is selected...
@@ -601,6 +601,7 @@ def main():
     # Probably unnecessary, but just in case anything has gotten out of sync 
     disk.adjustedJpegFolders.sort()
     disk.rawFilmScans.sort()
+
 
     # Process the adjusted Jpeg folders into New Movies using ffmpeg
     for adjustedFolder, rawMovie in zip(disk.adjustedJpegFolders, disk.rawFilmScans):
