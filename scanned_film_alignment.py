@@ -8,7 +8,6 @@ import shlex
 import sys
 from PIL import Image
 import time
-from pathlib import Path
 import numpy as np
 import cv2
 import properties as p
@@ -325,6 +324,7 @@ def adjustFile(fileList):
             inFile  = f[0]
             outFile = f[1]
 
+
             inputImg = cv2.imread(inFile)
             # run sprocket detection routine
             shiftX, shiftY = detectSprocketPos(inputImg, horizontal=True)
@@ -333,16 +333,16 @@ def adjustFile(fileList):
             # now output some test information
             dy,dx,dz = outputImage.shape
 
+
+            # PIL treats and expects images in the normal, RGB order. But OpenCV expects and requires them to be in order of BGR so need to swap them
+            imageRGB = cv2.cvtColor(outputImage, cv2.COLOR_BGR2RGB)
+
+            # Convert numpy array to Pillow Iimage Object
+            outputImage = Image.fromarray(imageRGB)
+            outputImage.convert('RGB').save(outFile, format='JPEG', subsampling=0, quality=95)
+
             # Stop the timer...
             tock = time.time()
-
-            # Write out the adjusted image
-            # Sample file of 921KB at different jpeg quality settings
-            # Default cv2.imgwrite (whatever that is) - 393KB
-            # Quality @ 90 - 254KB
-            # Quality @ 99 - 827KB
-            # Quality @ 100 - 1MB
-            cv2.imwrite(outFile,outputImage, [int(cv2.IMWRITE_JPEG_QUALITY), 99 ])
 
             print(f'Sprocket-Detection in {(tock-tick)*1000:.2f} msec, image size {dx} x {dy} - Applied shifts {shiftX}, {shiftY} - Output to -> {outFile}')
 
@@ -380,6 +380,7 @@ def main():
 
 
     print (screen.logo)
+    print()
 
     global disk
 
