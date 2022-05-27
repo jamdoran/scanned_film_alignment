@@ -378,6 +378,9 @@ def check_ffmpeg_installed():
 # Could be broken out, but bit easier to follow this way
 def main():
 
+
+    print (screen.logo)
+
     global disk
 
     print(f'MacOS {platform.mac_ver()[0]}\n{cpu_count()} CPU Cores\nUsing {max_allowed_core_count()} CPU Cores \nffmpeg location ({check_ffmpeg_installed()})\n\n')
