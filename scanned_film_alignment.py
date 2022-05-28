@@ -12,6 +12,7 @@ import numpy as np
 import cv2
 import properties as p
 import screen
+from datetime import datetime
 
 
 class Disk:
@@ -344,7 +345,7 @@ def adjustFile(fileList):
             # Stop the timer...
             tock = time.time()
 
-            print(f'Sprocket-Detection in {(tock-tick)*1000:.2f} msec, image size {dx} x {dy} - Applied shifts {shiftX}, {shiftY} - Output to -> {outFile}')
+            print(f'Sprocket Detection in {(tock-tick)*1000:.2f} msec, image size {dx} x {dy} - Applied shifts {shiftX}, {shiftY} - Output to -> {outFile}')
 
         except:
             print(f'{p.colour.RED}Failed to process {inFile}{p.colour.END}')
@@ -364,11 +365,26 @@ def check_ffmpeg_installed():
 
 
 
+# Try to send an imessage using AppleScript to drive iMessage
+# Note: First time you use this, the script will ask for permission for oascript to use iMessage
+def send_iMessage(iMessageSubscriber, message):
+    # Create timestamps and message body
+    timeStamp=datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+    messageBody = f'{p.appName} \n{timeStamp} \n\n{message}'
+
+    # Send the message via iMessage
+    iMessage_command = f'osascript {p.iMessageAppleScript} {iMessageSubscriber} "{messageBody}"'
+    os.system(iMessage_command)
+    return True
+
+
+
+
 # Disk and file structure as follows:
 # 
 # /root/                            (top level folder holding customer folders)
 # /root/customer                    (customer folder below root)
-# /root/customer/file.avi           (raw film scans in the customer folder - could be more than one)
+# /root/customer/file.mov           (raw film scans in the customer folder - could be more than one)
 # /root/customer/file_raw           (folder to hold jpegs from raw movie scans - folder is same name as movie with no suffix and _raw)
 # /root/customer/file_adjusted      (folder to hold adjusted jpegs created by ffmpeg - folder is same name as raw movie with no suffix and _adjusted)
 # /root/customer/file_adjusted.mov  (adjusted movie files - movie is stored in customer folder with same name as original with a _adjusted inseryed before suffix
@@ -378,10 +394,9 @@ def check_ffmpeg_installed():
 # Could be broken out, but bit easier to follow this way
 def main():
 
-
     print (screen.logo)
     print()
-
+    
     global disk
 
     print(f'MacOS {platform.mac_ver()[0]}\n{cpu_count()} CPU Cores\nUsing {max_allowed_core_count()} CPU Cores \nffmpeg location ({check_ffmpeg_installed()})\n\n')
@@ -636,24 +651,33 @@ def main():
     print ()
     print ()
     print ()
-    summaryDisplay()
-
+    summary()
 
 
 # Show a little summary at the end
-def summaryDisplay():
-    print ( )
-    print ( f'{screen.colour.YELLOW}- Summary -------------{screen.colour.END}')
-    print ( )
-    print ( f'Total Adjusted Files  : {disk.jpegFileCountToAdjust:,d}' )
-    print ( f'Total Adjusted Movies : {disk.rawMovieFileCount:,d}' )
-    print ( f'Start time            : {disk.startTimeText}' )
-    print ( f'End time              : {time.strftime("%I:%M:%S")}' )
-    print ( f'Time to convert       : {time.time() - disk.startTime:.2f} seconds' )
-    print ()
-    print ()
+def summary():
 
+    global disk
 
+    # Create a summary so we can print and send via iMessage
+    l1 = f'Converted Folder      : {disk.rootFolder}\n' 
+    l2 = f'Total Adjusted Files  : {disk.jpegFileCountToAdjust:,d}\n'
+    l3 = f'Total Adjusted Movies : {disk.rawMovieFileCount:,d}\n'
+    l4 = f'Start time            : {disk.startTimeText}\n'
+    l5 = f'End time              : {time.strftime("%I:%M:%S")}\n'
+    l6 = f'Time to convert       : {time.time() - disk.startTime:.2f} seconds\n'
+
+    print()
+    print (f'{screen.colour.YELLOW}- Summary -------------{screen.colour.END}\n')
+    print (f'{l1}{l2}{l3}{l4}{l5}{l6}')
+    print()
+
+    # Try to send an iMessage, but just pass if it fails...
+    try:
+        message = f'{l1}{l2}{l3}{l4}{l5}{l6}'
+        send_iMessage(p.iMessageSubscriber, message)
+    except:
+        pass
 
 # Run main() when launched as a script
 if __name__ == '__main__':

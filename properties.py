@@ -1,5 +1,5 @@
-
-# Settings and other stuff
+# Repo for this Application
+GitHubRepo='https://github.com/jamdoran/scanned_film_alignment'
 
 # Where to store the adjusted files - this is a subfolder of the main folder
 output_folder = 'Sprocket_Adjusted'
@@ -17,5 +17,11 @@ Horizontal = True
 thread_max = -1
 
 
+# iMessage Applescript
+iMessageAppleScript = 'iMessage.scpt'
 
-GitHubRepo='https://github.com/jamdoran/scanned_film_alignment'
+# Application Name for Sending iMessages
+appName = f'Scanned Film Alignment'
+
+# iMessage Subscriber to receive notification
+iMessageSubscriber = 'jimmy@the-dorans.com'
