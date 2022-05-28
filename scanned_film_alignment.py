@@ -651,11 +651,8 @@ def main():
 
     print ()
     print ()
-    print ('ALL DONE')
-    print ()
-    print ()
-    print ()
     summary()
+    print ()
 
 
 # Show a little summary at the end
@@ -664,12 +661,12 @@ def summary():
     global disk
 
     # Create a summary so we can print and send via iMessage
-    l1 = f'Converted Folder      : {disk.rootFolder}\n' 
-    l2 = f'Total Adjusted Files  : {disk.jpegFileCountToAdjust:,d}\n'
-    l3 = f'Total Adjusted Movies : {disk.rawMovieFileCount:,d}\n'
-    l4 = f'Start time            : {disk.startTimeText}\n'
-    l5 = f'End time              : {time.strftime("%I:%M:%S")}\n'
-    l6 = f'Time to convert       : {time.time() - disk.startTime:.2f} seconds\n'
+    l1 = f'Folder               : {disk.rootFolder}\n' 
+    l2 = f'Total Reels          : {disk.rawMovieFileCount:,d}\n'
+    l3 = f'Total Adjusted Files : {disk.jpegFileCountToAdjust:,d}\n'
+    l4 = f'Start time           : {disk.startTimeText}\n'
+    l5 = f'End time             : {time.strftime("%I:%M:%S")}\n'
+    l6 = f'Time to convert      : {time.time() - disk.startTime:.2f} seconds\n'
 
     print()
     print (f'{screen.colour.YELLOW}- Summary -------------{screen.colour.END}\n')
