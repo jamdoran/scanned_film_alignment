@@ -374,10 +374,14 @@ def send_iMessage(iMessageSubscriber, message):
 
     # Send the message via iMessage
     iMessage_command = f'osascript {p.iMessageAppleScript} {iMessageSubscriber} "{messageBody}"'
-    os.system(iMessage_command)
+    exitCode = os.system(iMessage_command)
+
+    if exitCode != 0:
+        print ('iMessage Notification Failed!')
+        return False
+
+    print ('iMessage Notification Sent OK')
     return True
-
-
 
 
 # Disk and file structure as follows:
@@ -396,7 +400,7 @@ def main():
 
     print (screen.logo)
     print()
-    
+
     global disk
 
     print(f'MacOS {platform.mac_ver()[0]}\n{cpu_count()} CPU Cores\nUsing {max_allowed_core_count()} CPU Cores \nffmpeg location ({check_ffmpeg_installed()})\n\n')
@@ -678,6 +682,9 @@ def summary():
         send_iMessage(p.iMessageSubscriber, message)
     except:
         pass
+
+
+
 
 # Run main() when launched as a script
 if __name__ == '__main__':

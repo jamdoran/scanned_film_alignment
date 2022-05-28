@@ -18,7 +18,7 @@ thread_max = -1
 
 
 # iMessage Applescript
-iMessageAppleScript = 'iMessage.scpt'
+iMessageAppleScript = 'iMessage.scpt1'
 
 # Application Name for Sending iMessages
 appName = f'Scanned Film Alignment'
