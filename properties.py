@@ -22,7 +22,7 @@ iMessageSubscriber      = 'jimmy@the-dorans.com'            # iMessage Subscribe
 
 
 # Jpeg Quality for adjusted files
-jpeg_quality = 100
+jpeg_quality = 95
 
 
 # Default Initial Folder
