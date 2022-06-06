@@ -1,8 +1,6 @@
 # Repo for this Application
 GitHubRepo='https://github.com/jamdoran/scanned_film_alignment'
 
-# Where to store the adjusted files - this is a subfolder of the main folder
-output_folder = 'Sprocket_Adjusted'
 
 # Set to True if you want the program to align horizontally as well as vertically (vertically is default and cannot be turned off)
 # Has no real performance impact
@@ -17,11 +15,21 @@ Horizontal = True
 thread_max = -1
 
 
-# iMessage Applescript
-iMessageAppleScript = 'iMessage.scpt'
+# iMessage Settings
+iMessageAppleScript     = 'iMessage.scpt'                   # iMessage Applescript
+appName                 = f'Scanned Film Alignment'         # Application Name shown in message
+iMessageSubscriber      = 'jimmy@the-dorans.com'            # iMessage Subscriber to receive notification
 
-# Application Name for Sending iMessages
-appName = f'Scanned Film Alignment'
 
-# iMessage Subscriber to receive notification
-iMessageSubscriber = 'jimmy@the-dorans.com'
+# Jpeg Quality for adjusted files
+jpeg_quality = 100
+
+
+# Default Initial Folder
+# Some examples below...  Just replace the active setting with one of these
+# 
+# default_folder = '/Volumes/'          #  Where all the external volumes are mounted (all volumes really)
+# default_folder = '/Volumes/SSD/'      #  A specific Volume called SSD
+# default_folder = '~'                  #  My Home Folder
+# default_folder = '.'                  #  The same folder as the script
+default_folder = '.'      

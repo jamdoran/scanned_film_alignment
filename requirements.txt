@@ -1,8 +1,5 @@
 
 #Versioned packages
-numpy==1.22.3
-Pillow==9.1.0
-six==1.16.0
-wxPython==4.1.1
+numpy==1.22.4
 opencv-python==4.5.5.64
-
+Pillow==9.1.1
