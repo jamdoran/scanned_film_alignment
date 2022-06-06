@@ -6,6 +6,7 @@ GitHubRepo='https://github.com/jamdoran/scanned_film_alignment'
 # Has no real performance impact
 Horizontal = True
 
+
 # Set to less than 1 for unrestricted
 # Note that unrestricted means cpu_count -1 otherwise the machine may become unresponsive or crash since Seb won't upgrade his kit
 # Setting it higher than the actual core count will result in it using cpu_count -1 anyways
