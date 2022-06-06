@@ -40,6 +40,10 @@ text_line = ('_' * 100)
 #
 
 
+# Set environment variable to silence tkinter depreciation warnings
+os.environ['TK_SILENCE_DEPRECATION'] = '1'
+
+
 # All data and work is held and done here
 # Driven from main() to make it easy to follow
 class ImageProcessing:
@@ -372,7 +376,8 @@ def hostInfo():
     print()
     check_ffmpeg_installed()
     print()
-
+    print (f'Jpegs will be written at {str(p.jpeg_quality)}% jpeg quality' )
+    print()
 
 # Check ffmpeg is installed
 def check_ffmpeg_installed():
