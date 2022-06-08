@@ -304,7 +304,8 @@ class ImageProcessing:
 
     # Try to send an imessage using AppleScript to drive iMessage
     # Note: First time you use this, the script will ask for permission for oascript to use iMessage
-    def send_iMessage(self, iMessageSubscriber, message) -> None:
+    @staticmethod
+    def send_iMessage(iMessageSubscriber, message) -> None:
         # Create timestamps and message body
         timeStamp = time.strftime("%d/%m/%Y %H:%M:%S")
         messageBody = f'{p.appName} \n{timeStamp} \n\n{message}'
@@ -317,6 +318,7 @@ class ImageProcessing:
             print('iMessage Notification Failed!')
 
         print('iMessage Notification Sent OK')
+
 
 
 def main():
