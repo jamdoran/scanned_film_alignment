@@ -41,6 +41,11 @@ sudo xcodebuild -license accept
 brew install python@3.10 zsh python-tk@3.10 ffmpeg
 chsh -s /usr/local/bin/zsh
 
+#Install ohmyzsh
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+
 #Open a new iTerm tab and check we have the correct zsh
 $ which zsh
 /usr/local/bin/zsh   //correct
@@ -56,6 +61,11 @@ git clone https://github.com/jamdoran/tiff_bulk_convert
 # Add alias to .zshrc
 alias convert='cd ~/Documents/Git/tiff_bulk_convert && source .venv/bin/activate && python tiff_convert.py'
 alias sprocket='cd ~/Documents/Git/scanned_film_alignment && source .venv/bin/activate && python scanned_film_alignment.py'
+
+# Install the apps into their virtual environments
+Run setup.sh for both apps in separate terminal tabs
+
+
 
 #Should be good to go 
 
