@@ -27,7 +27,9 @@ Install iTerm for sanity sake
 # Install xcode command line tools 
 xcode-select --install
     Wait for this to finish - it can take a while
- 
+
+# Accept the xcode license 
+sudo xcodebuild -license accept
 
 
 # Install HomeBrew as per instructions on home page
