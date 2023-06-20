@@ -31,7 +31,7 @@ xcode-select --install
 
 
 #Install Python 10, zsh etc
-brew install python@3.10, zsh, python-tk@3.10, ffmpeg
+brew install python@3.10 zsh python-tk@3.10 ffmpeg
 chsh -s /usr/local/bin/zsh
 
 #Open a new iTerm tab and check we have the correct zsh
